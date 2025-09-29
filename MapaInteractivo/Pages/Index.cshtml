@@ -61,22 +61,22 @@
     <button onclick="focusMarker(0)">👩‍💼 Casa de la Señora Marianne.</button>
     <button onclick="focusMarker(1)">👩‍🎨 Señora de la Tienda</button>
     <button onclick="focusMarker(2)">🏛️ Presidente junta de acción Comunidad</button>
-    <button onclick="focusMarker(3)">🏥 Centro de Salud Paraíso</button>
-    <button onclick="focusMarker(4)">🏟️ Polideportivo del Barrio</button>
+    <button onclick="focusMarker(3)">🏟️ Colegio INEM</button>
+    <button onclick="focusMarker(4)">💒 Capilla de la misericordia</button>
 
     <h2>Potencialidades</h2>
-    <button onclick="focusMarker(5)">🏠 Carrera 16</button>
-    <button onclick="focusMarker(6)">🚩 Punto de encuentro</button>
+    <button onclick="focusMarker(5)">🏠 Oportunidad de Vivienda</button>
+    <button onclick="focusMarker(6)">🚩 Punto de encuentro(No oficial)</button>
     <button onclick="focusMarker(7)">🌳 Parque Central</button>
-    <button onclick="focusMarker(8)">🏢 Salón Comunal</button>
+    <button onclick="focusMarker(8)">🏢 Incentivo a la lectura</button>
     <button onclick="focusMarker(9)">🎓 Hogar Infantil Paraiso</button>
 
     <h2>Problemáticas</h2>
-    <button onclick="focusMarker(10)">🗑️ Acumulación de Basura</button>
+    <button onclick="focusMarker(10)">🗑️ Inrresponsabilidad con la Basura</button>
     <button onclick="focusMarker(11)">🚷 Imprudencia Vial</button>
-    <button onclick="focusMarker(12)">🚦 Carrera 18 con Calle 11</button>
+    <button onclick="focusMarker(12)">😡 Mala convivencia</button>
     <button onclick="focusMarker(13)">🚧 Colegio INEM (conflictos estudiantiles)</button>
-    <button onclick="focusMarker(14)">😭 Inseguridad (Zona este)</button>
+    <button onclick="focusMarker(14)">😭 No hay participación de (JAC)</button>
 </div>
 
 <button id="toggleSidebar">-</button>
@@ -107,43 +107,51 @@
         // Lista de ubicaciones
                var locations = [
             // ----- Actores -----
-            { coords: [5.526023, -73.370491], title: "👩‍💼 Casa de la Señora Marianne.", info: "Principal influyente en la organización de eventos y celebraciones.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.50 AM (1).jpeg" },
-            { coords: [5.525672, -73.372137], title: "👩‍🎨 Señora de la Tienda", info: "Principal Papeleria y Miselania del barrio.", img: "/images/TiendaPrincipal.jpeg" },
-            { coords: [5.526194, -73.370849], title: "🏛️ Presidente junta de acción Comunidad", info: "Presidente: Hugo Gilberto Avila Avila. Despreciado por la comunidad dado que no ha desarrollado ningún proyecto en el barrio", img: "/images/PresidenteDeJunta.png" },
-            { coords: [5.5270, -73.3725], title: "🏥 Centro de Salud Paraíso", info: "Atención médica primaria.", img: "https://cdn-icons-png.flaticon.com/512/2966/2966489.png" },
-            { coords: [5.5268, -73.3717], title: "🏟️ Polideportivo del Barrio", info: "Lugar de deporte y recreación.", img: "https://cdn-icons-png.flaticon.com/512/1974/1974036.png" },
+            { coords: [5.526023, -73.370491], title: "👩‍💼 Casa de la Señora Marianne.", info: "Líder social en la organización de eventos en épocas de festividades (Navidad, halloween, etc.).", img: "/images/WhatsApp Image 2025-09-28 at 10.56.50 AM (1).jpeg" },
+            { coords: [5.525672, -73.372137], title: "👩‍🎨 Señora de la Tienda", info: "Principal papelería y miscelánea con el único corresponsal bancario del barrio.", img: "/images/TiendaPrincipal.jpeg" },
+            { coords: [5.526194, -73.370849], title: "🏛️ Presidente junta de acción Comunidad", info: "Principal responsable del deterioro físico y cultural del barrio al no crear actividades ni fomentar la participación comunitaria.", img: "/images/PresidenteDeJunta.png" },
+            { coords: [5.525548, -73.369103], title: "🏟️ Colegio INEM", info: "Uno de los colegios más grandes e influyentes de Tunja. Tiene un papel clave porque concentra a muchos estudiantes del barrio y zonas aledañas. También puede ser un actor educativo y social para trabajar en proyectos de convivencia, cultura ciudadana y seguridad escolar..", img: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqlq3a4LAaB96FHpsbGfXOy7r8OJjskJfYuel_Jqrv_GC_Sd0jUsr_s2SyB1JZx6msREevdlUoecUGeuVBY83wrnBKmktvnQGMuYoje9xeYhtM3uYqyEDeVKHvMQL0ptygxgKwwaw=s1360-w1360-h1020-rw" },
+            { coords: [5.5268, -73.3717], title: "💒 Capilla de la misericordia", info: "Las capillas suelen ser espacios de encuentro comunitario en los barrios de Tunja para la celebración de ceremonias. tienen alta influencia en convocatorias, actividades comunitarias y procesos de integración.", img: "/images/Capilla.jpeg" },
 
             // ----- Potencialidades -----
             { coords: [5.527251, -73.370122], title: "🏠 Oportunidad de Vivienda", info: "Por un lado hay espacios con viviendas para personas de bajos recursos, por otro lado hay potencial de desarrollo de infraestructura.", img: "/images/AptosParaiso.jpeg" },
-            { coords: [5.525724, -73.371976], title: "🚩 Punto de encuentro", info: "Punto de encuentro no oficial, designado por la comunidad.", img: "/images/SalonComunal.jpeg" },
+            { coords: [5.525724, -73.371976], title: "🚩 Punto de encuentro (No oficial)", info: "Punto de encuentro no oficial, designado por la comunidad.", img: "/images/SalonComunal.jpeg" },
             { coords: [5.527155, -73.370351], title: "🌳 Parque Central", info: "Espacio verde multiparque con potencial turístico.", img: "/images/ParqueDeteriorado.jpeg" },
-            { coords: [5.526792, -73.370475], title: "🏢 Salón Comunal", info: "Área con gran potencial para la organización de eventos/encuentros de la comunidad.", img: "/images/SalonComunal2.0.jpeg" },
+            { coords: [5.526792, -73.370475], title: "🏢 Incentivo a la lectura", info: "Área con gran potencial para la organización de eventos/encuentros de la comunidad y fomentar la lectura desde una temprana edad.", img: "/images/IncentivoLectura.jpeg" },
             { coords: [5.526067, -73.370688], title: "🎓 Hogar Infantil Paraiso", info: "Institución con mejor referencias del Barrio.", img: "/images/ColegioInfantil.jpeg" },
 
             // ----- Problemáticas -----
-            { coords: [5.525964, -73.370056], title: "🗑️ Acumulación de Basura", info: "Problemas por basuras mal administradas.", img: "/images/ParqueSucio.jpeg" },
-            { coords: [5.526312, -73.371085], title: "🚷 Imprudencia Vial", info: "Problemas de señalización, falta de andenes y cruces viales .", img: "/images/CallesMalEstado.jpeg" },
-            { coords: [5.524754, -73.370445], title: "😡 Mala convivencia entre vecinos", info: "Deficiencia en la comunicación entre los negocios pequeños, lo que genera mal entendidos.", img: "/images/TiendaConvenencia.jpeg" },
+            { coords: [5.525964, -73.370056], title: "🗑️ Irresponsabilidad en la gestión de basura de Basura", info: "Problemas por basuras mal administradas.", img: "/images/ParqueSucio.jpeg" },
+            { coords: [5.526312, -73.371085], title: "🚷 Vías en deterioro e imprudencia vial", info: "Problemas de señalización, falta de andenes y cruces viales .", img: "/images/CallesMalEstado.jpeg" },
+            { coords: [5.524754, -73.370445], title: "😡 Mala convivencia entre habitantes del barrio", info: "Deficiencia en la comunicación entre los negocios pequeños, lo que genera mal entendidos.", img: "/images/TiendaConvenencia.jpeg" },
             { coords: [5.525116, -73.369783], title: "🚧 Colegio INEM (conflictos estudiantiles)", info: "Frecuentes peleas entre estudiantes.", img: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqlq3a4LAaB96FHpsbGfXOy7r8OJjskJfYuel_Jqrv_GC_Sd0jUsr_s2SyB1JZx6msREevdlUoecUGeuVBY83wrnBKmktvnQGMuYoje9xeYhtM3uYqyEDeVKHvMQL0ptygxgKwwaw=s1360-w1360-h1020-rw" },
-            { coords: [5.526504, -73.373320], title: "😭 Inseguridad (Zona este)", info: "Falta de un sistema de vigilancia 24/7.", img: "/images/Inseguridad.jpeg" }
+            { coords: [5.526504, -73.373320], title: "😭 No hay intervención bajo la responsabilidad del presidente de la junta", info: "Falta de un sistema de vigilancia 24/7.", img: "/images/Inseguridad.jpeg" }
         ];
 
             // ---- Nuevas ubicaciones que solo van en el mapa ----
         var extraLocations = [
             // Encantados
-            { coords: [5.527500, -73.371200], title: "🤩 Biblioteca Comunitaria", info: "Pequeña sala de lectura en el barrio.", img: "/images/IncentivoLectura.jpeg", emoji: "🤩" },
+            { coords: [5.527576, -73.371581], title: "🤩 Sitio que mas les gusta", info: "Lugares como el colegio, parques, casa. etc.", img: "/images/IncentivoLectura.jpeg", emoji: "🤩" },
+            { coords: [5.527439, -73.370917], title: "🤩 Sitio que mas les gusta", info: "Lugares como el colegio, parques, casa. etc.", img: " ", emoji: "🤩" },
+            { coords: [5.527848, -73.379748], title: "🤩 Sitio que mas les gusta", info: "Lugares como el colegio, parques, casa. etc.", img: " ", emoji: "🤩" },
+            { coords: [5.525350, -73.369490], title: "🤩 Sitio que mas les gusta", info: "Lugares como el colegio, parques, casa. etc.", img: " ", emoji: "🤩" },
+            { coords: [5.525691, -73.368932], title: "🤩 Sitio que mas les gusta", info: "Lugares como el colegio, parques, casa. etc.", img: " ", emoji: "🤩" },
+
             // Rabia
-            { coords: [5.525800, -73.369900], title: "😡 Puesto de Comida", info: "Vendedor reconocido por sus hamburguesas caseras.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.48 AM.jpeg", emoji: "😡" },
+            { coords: [5.525800, -73.369900], title: "😡 Lugares que no les agrada", info: "Lugares descuidados y sin supervición como parques, calles, etc.", img: "/images/Casas.jpeg", emoji: "😡" },
+            { coords: [5.526236, -73.372333], title: "😡 Lugares que no les agrada", info: "Lugares descuidados y sin supervición como parques, calles, etc.", img: " ", emoji: "😡" },
             // Tristeza
-            { coords: [5.526600, -73.372800], title: "😭 Iglesia Parroquial", info: "Punto de encuentro espiritual de la comunidad.", img: "/images/Capilla.jpeg", emoji: "😭" },
+            { coords: [5.527218, -73.370005], title: "😭 Lugares en deterioro", info: "Lugares deteriorados con el tiempo por la falta de cuidado como la cancha de voleibo, paradero de buses. etc.", img: "/images/ParqueMalEstado.jpeg", emoji: "😭" },
             // Punto de Interes
-            { coords: [5.527100, -73.370600], title: "📍 Punto de Encuentro Deportivo", info: "Espacio donde se reúnen los jóvenes.", img: "/images/Saloncomunal.jpeg", emoji: "📍" },
+            { coords: [5.525211, -73.370198], title: "📍 Punto de Encuentro.", info: "Espacio donde se reúnen.", img: "/imges/ParqueMalOlor.jpeg", emoji: "📍" },
+            { coords: [5.525499, -73.371850], title: "📍 Punto de Encuentro.", info: "Espacio donde se reúnen.", img: " ", emoji: "📍" },
+            { coords: [5.525471, -73.373191], title: "📍 Punto de Encuentro.", info: "Espacio donde se reúnen.", img: " ", emoji: "📍" },
             // Molestia
-            { coords: [5.526900, -73.371300], title: "😤 Taller Mecánico", info: "Reconocido por su rapidez en reparaciones.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.49 AM.jpeg", emoji: "😤" },
+            { coords: [5.526683, -73.371625], title: "😤 Lugares en deterioro", info: "Lugares deteriorados con el tiempo por la falta de cuidado .", img: "/images/WhatsApp Image 2025-09-28 at 10.56.49 AM.jpeg", emoji: "😤" },
             // Felicidad
-            { coords: [5.526300, -73.372000], title: "😁 Cafetería Local", info: "Ambiente acogedor para la comunidad.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.49 AM (4).jpeg", emoji: "😁" },
+            { coords: [5.526394, -73.371957], title: "😁 Sitio que mas les gusta", info: "Ambiente acogedor para la comunidad.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.49 AM (4).jpeg", emoji: "😁" },
             // Emoción
-            { coords: [5.525900, -73.371600], title: "😄 Panadería", info: "Pan fresco cada mañana.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.48 AM.jpeg", emoji: "😄" },
+            { coords: [5.525809, -73.370188], title: "😄 Sitio que mas les gusta", info: "Ambiente acogedor para la comunidad.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.48 AM.jpeg", emoji: "😄" },
             // Furia
             { coords: [5.524930, -73.369887], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
             { coords: [5.524828, -73.369940], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
@@ -153,7 +161,7 @@
             { coords: [5.525979, -73.373480], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
             { coords: [5.526632, -73.370681], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
             // Decepción
-            { coords: [5.527300, -73.372500], title: "😢 Vivienda en Deterioro", info: "Casa abandonada que preocupa a los vecinos.", img: "/images/ParqueMalOlor.jpeg", emoji: "😢" }
+            { coords: [5.527005, -73.369780], title: "😢 Vivienda en Deterioro", info: "Casa abandonada que preocupa a los vecinos.", img: "/images/ParqueMalOlor.jpeg", emoji: "😢" }
         ];
 
 
