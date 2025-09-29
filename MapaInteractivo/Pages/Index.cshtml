@@ -4,49 +4,160 @@
     ViewData["Title"] = "Mapa Interactivo";
 }
 
+<style>
+    #map {
+        height: 100vh;
+        width: 100%;
+    }
+
+    #sidebar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 280px;
+        max-height: 95vh;
+        overflow-y: auto;
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+        /* Cuando se oculta se mueve a la izquierda */
+        #sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+    #toggleSidebar {
+        position: absolute;
+        top: 10px;
+        left: 300px;
+        background: #0078d7;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 1100;
+        transition: left 0.3s ease-in-out;
+    }
+
+    #sidebar.hidden + #toggleSidebar {
+        left: 10px;
+    }
+
+    .popup-img {
+        max-width: 180px;
+        margin-top: 8px;
+        border-radius: 8px;
+    }
+</style>
+
 <div id="sidebar">
     <h2>Actores</h2>
-    <button onclick="focusMarker(0)">👨‍🏫 Colegio INEM</button>
-    <button onclick="focusMarker(1)">🏠 Carrera 15A</button>
+    <button onclick="focusMarker(0)">👩‍💼 Casa de la Señora Marianne.</button>
+    <button onclick="focusMarker(1)">👩‍🎨 Señora de la Tienda</button>
+    <button onclick="focusMarker(2)">🏛️ Presidente junta de acción Comunidad</button>
+    <button onclick="focusMarker(3)">🏥 Centro de Salud Paraíso</button>
+    <button onclick="focusMarker(4)">🏟️ Polideportivo del Barrio</button>
 
     <h2>Potencialidades</h2>
-    <button onclick="focusMarker(2)">🏠 Carrera 16</button>
-    <button onclick="focusMarker(3)">🚦 Calle 8 con Carrera 17A</button>
-    <button onclick="focusMarker(4)">🚦 Carrera 16 con Calle 12</button>
+    <button onclick="focusMarker(5)">🏠 Carrera 16</button>
+    <button onclick="focusMarker(6)">🚩 Punto de encuentro</button>
+    <button onclick="focusMarker(7)">🌳 Parque Central</button>
+    <button onclick="focusMarker(8)">🏢 Salón Comunal</button>
+    <button onclick="focusMarker(9)">🎓 Hogar Infantil Paraiso</button>
 
     <h2>Problemáticas</h2>
-    <button onclick="focusMarker(5)">🚦 Calle 11 con Carrera 15A</button>
-    <button onclick="focusMarker(6)">🚦 Carrera 17 con Calle 12</button>
-    <button onclick="focusMarker(7)">🚦 Carrera 18 con Calle 11</button>
-    <button onclick="focusMarker(8)">🚦 Colegio INEM</button>
+    <button onclick="focusMarker(10)">🗑️ Acumulación de Basura</button>
+    <button onclick="focusMarker(11)">🚷 Imprudencia Vial</button>
+    <button onclick="focusMarker(12)">🚦 Carrera 18 con Calle 11</button>
+    <button onclick="focusMarker(13)">🚧 Colegio INEM (conflictos estudiantiles)</button>
+    <button onclick="focusMarker(14)">😭 Inseguridad (Zona este)</button>
 </div>
+
+<button id="toggleSidebar">-</button>
 
 <div id="map"></div>
 
 @section Scripts {
     <script>
-        // Crear mapa centrado
-        var map = L.map('map').setView([5.526231, -73.370851], 16);
+        // Crear mapa
+        var map = L.map('map').setView([5.526231, -73.370851], 20);
 
         // Capa base OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Lista de ubicaciones con info y fotos
-        var locations = [
-            { coords: [5.5259, -73.3723], title: "👨‍🏫 Colegio INEM", info: "Institución educativa del barrio Paraíso. Principal problematica del barrio dado a que se generan muchas peleas entre estudiantes", img: "https://upload.wikimedia.org/wikipedia/commons/4/47/School_building_icon.png" },
-            { coords: [5.5257, -73.3711], title: "🏠 Carrera 15A", info: "Zona residencial importante.", img: "https://cdn-icons-png.flaticon.com/512/616/616408.png" },
-            { coords: [5.5263, -73.3699], title: "🏠 Carrera 16", info: "Residencias con potencial de desarrollo.", img: "https://cdn-icons-png.flaticon.com/512/1670/1670615.png" },
-            { coords: [5.5270, -73.3694], title: "🚦 Calle 8 con Carrera 17A", info: "Intersección de alto tráfico.", img: "https://cdn-icons-png.flaticon.com/512/2490/2490460.png" },
-            { coords: [5.5282, -73.3702], title: "🚦 Carrera 16 con Calle 12", info: "Punto clave de movilidad.", img: "https://cdn-icons-png.flaticon.com/512/2490/2490460.png" },
-            { coords: [5.5276, -73.3710], title: "🚦 Calle 11 con Carrera 15A", info: "Problemas por basuras mal administradas.", img: "https://cdn-icons-png.flaticon.com/512/1484/1484551.png" },
-            { coords: [5.5281, -73.3690], title: "🚦 Carrera 17 con Calle 12", info: "Problemas de semaforización.", img: "https://cdn-icons-png.flaticon.com/512/1484/1484551.png" },
-            { coords: [5.5269, -73.3685], title: "🚦 Carrera 18 con Calle 11", info: "Deficiencia en la infraestructura vial.", img: "https://cdn-icons-png.flaticon.com/512/1484/1484551.png" },
-            { coords: [5.5262, -73.3690], title: "👨‍🏫 Colegio INEM", info: "Institución educativa del barrio Paraíso. Principal problematica del barrio dado a que se generan muchas peleas entre estudiantes", img: "https://upload.wikimedia.org/wikipedia/commons/4/47/School_building_icon.png" },
+                // Función para crear un ícono emoji
+        function createEmojiIcon(emoji) {
+            return L.divIcon({
+                className: 'emoji-icon', // clase para estilos
+                html: `<div style="font-size: 28px;">${emoji}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
+                popupAnchor: [0, -15]
+            });
+        }
+
+        // Lista de ubicaciones
+               var locations = [
+            // ----- Actores -----
+            { coords: [5.526023, -73.370491], title: "👩‍💼 Casa de la Señora Marianne.", info: "Principal influyente en la organización de eventos y celebraciones.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.50 AM (1).jpeg" },
+            { coords: [5.525672, -73.372137], title: "👩‍🎨 Señora de la Tienda", info: "Principal Papeleria y Miselania del barrio.", img: "/images/TiendaPrincipal.jpeg" },
+            { coords: [5.526194, -73.370849], title: "🏛️ Presidente junta de acción Comunidad", info: "Presidente: Hugo Gilberto Avila Avila. Despreciado por la comunidad dado que no ha desarrollado ningún proyecto en el barrio", img: "/images/PresidenteDeJunta.png" },
+            { coords: [5.5270, -73.3725], title: "🏥 Centro de Salud Paraíso", info: "Atención médica primaria.", img: "https://cdn-icons-png.flaticon.com/512/2966/2966489.png" },
+            { coords: [5.5268, -73.3717], title: "🏟️ Polideportivo del Barrio", info: "Lugar de deporte y recreación.", img: "https://cdn-icons-png.flaticon.com/512/1974/1974036.png" },
+
+            // ----- Potencialidades -----
+            { coords: [5.527251, -73.370122], title: "🏠 Oportunidad de Vivienda", info: "Por un lado hay espacios con viviendas para personas de bajos recursos, por otro lado hay potencial de desarrollo de infraestructura.", img: "/images/AptosParaiso.jpeg" },
+            { coords: [5.525724, -73.371976], title: "🚩 Punto de encuentro", info: "Punto de encuentro no oficial, designado por la comunidad.", img: "/images/SalonComunal.jpeg" },
+            { coords: [5.527155, -73.370351], title: "🌳 Parque Central", info: "Espacio verde multiparque con potencial turístico.", img: "/images/ParqueDeteriorado.jpeg" },
+            { coords: [5.526792, -73.370475], title: "🏢 Salón Comunal", info: "Área con gran potencial para la organización de eventos/encuentros de la comunidad.", img: "/images/SalonComunal2.0.jpeg" },
+            { coords: [5.526067, -73.370688], title: "🎓 Hogar Infantil Paraiso", info: "Institución con mejor referencias del Barrio.", img: "/images/ColegioInfantil.jpeg" },
+
+            // ----- Problemáticas -----
+            { coords: [5.525964, -73.370056], title: "🗑️ Acumulación de Basura", info: "Problemas por basuras mal administradas.", img: "/images/ParqueSucio.jpeg" },
+            { coords: [5.526312, -73.371085], title: "🚷 Imprudencia Vial", info: "Problemas de señalización, falta de andenes y cruces viales .", img: "/images/CallesMalEstado.jpeg" },
+            { coords: [5.524754, -73.370445], title: "😡 Mala convivencia entre vecinos", info: "Deficiencia en la comunicación entre los negocios pequeños, lo que genera mal entendidos.", img: "/images/TiendaConvenencia.jpeg" },
+            { coords: [5.525116, -73.369783], title: "🚧 Colegio INEM (conflictos estudiantiles)", info: "Frecuentes peleas entre estudiantes.", img: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqlq3a4LAaB96FHpsbGfXOy7r8OJjskJfYuel_Jqrv_GC_Sd0jUsr_s2SyB1JZx6msREevdlUoecUGeuVBY83wrnBKmktvnQGMuYoje9xeYhtM3uYqyEDeVKHvMQL0ptygxgKwwaw=s1360-w1360-h1020-rw" },
+            { coords: [5.526504, -73.373320], title: "😭 Inseguridad (Zona este)", info: "Falta de un sistema de vigilancia 24/7.", img: "/images/Inseguridad.jpeg" }
         ];
 
-        // Crear marcadores con popup (emoji + info + foto)
+            // ---- Nuevas ubicaciones que solo van en el mapa ----
+        var extraLocations = [
+            // Encantados
+            { coords: [5.527500, -73.371200], title: "🤩 Biblioteca Comunitaria", info: "Pequeña sala de lectura en el barrio.", img: "/images/IncentivoLectura.jpeg", emoji: "🤩" },
+            // Rabia
+            { coords: [5.525800, -73.369900], title: "😡 Puesto de Comida", info: "Vendedor reconocido por sus hamburguesas caseras.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.48 AM.jpeg", emoji: "😡" },
+            // Tristeza
+            { coords: [5.526600, -73.372800], title: "😭 Iglesia Parroquial", info: "Punto de encuentro espiritual de la comunidad.", img: "/images/Capilla.jpeg", emoji: "😭" },
+            // Punto de Interes
+            { coords: [5.527100, -73.370600], title: "📍 Punto de Encuentro Deportivo", info: "Espacio donde se reúnen los jóvenes.", img: "/images/Saloncomunal.jpeg", emoji: "📍" },
+            // Molestia
+            { coords: [5.526900, -73.371300], title: "😤 Taller Mecánico", info: "Reconocido por su rapidez en reparaciones.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.49 AM.jpeg", emoji: "😤" },
+            // Felicidad
+            { coords: [5.526300, -73.372000], title: "😁 Cafetería Local", info: "Ambiente acogedor para la comunidad.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.49 AM (4).jpeg", emoji: "😁" },
+            // Emoción
+            { coords: [5.525900, -73.371600], title: "😄 Panadería", info: "Pan fresco cada mañana.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.48 AM.jpeg", emoji: "😄" },
+            // Furia
+            { coords: [5.524930, -73.369887], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
+            { coords: [5.524828, -73.369940], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
+            { coords: [5.524700, -73.369930], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
+            { coords: [5.524892, -73.369200], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: "/images/WhatsApp Image 2025-09-28 at 10.56.48 AM (3).jpeg ", emoji: "🤬" },
+            { coords: [5.523718, -73.369350], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
+            { coords: [5.525979, -73.373480], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
+            { coords: [5.526632, -73.370681], title: "🤬 Punto de Conflictos", info: "Zona con frecuentes discusiones comunitarias.", img: " ", emoji: "🤬" },
+            // Decepción
+            { coords: [5.527300, -73.372500], title: "😢 Vivienda en Deterioro", info: "Casa abandonada que preocupa a los vecinos.", img: "/images/ParqueMalOlor.jpeg", emoji: "😢" }
+        ];
+
+
+        // Crear marcadores con popup
         var markers = [];
         locations.forEach(loc => {
             var marker = L.marker(loc.coords).addTo(map);
@@ -58,13 +169,35 @@
             markers.push(marker);
         });
 
-        // Función para hacer zoom en marcador desde el sidebar
+        // Crear marcadores solo en el mapa (sin sidebar)
+        extraLocations.forEach(loc => {
+            var marker = L.marker(loc.coords, { icon: createEmojiIcon(loc.emoji) }).addTo(map);
+            marker.bindPopup(`
+                <b>${loc.title}</b><br>
+                ${loc.info}<br>
+                <img src="${loc.img}" class="popup-img" />
+            `);
+        });
+
+
+        // Función para hacer zoom
         function focusMarker(index) {
             var marker = markers[index];
-            map.setView(marker.getLatLng(), 18); // zoom cercano
+            map.setView(marker.getLatLng(), 18);
             marker.openPopup();
         }
+
+        // Botón para mostrar/ocultar sidebar
+        var toggleBtn = document.getElementById("toggleSidebar");
+        var sidebar = document.getElementById("sidebar");
+
+        toggleBtn.addEventListener("click", function () {
+            sidebar.classList.toggle("hidden");
+            toggleBtn.textContent = sidebar.classList.contains("hidden") ? "+" : "-";
+        });
     </script>
 }
+
+
 
 

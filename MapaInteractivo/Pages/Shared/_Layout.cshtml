@@ -3,7 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Mapa Interactivo</title>
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap (opcional para estilos generales) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -13,66 +16,23 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
+            overflow: hidden;
         }
 
-        #map {
-            height: 100vh;
-            width: calc(100% - 270px); /* espacio al sidebar */
-            margin-left: 270px;
-        }
-
-        /* Sidebar */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 270px;
+        main {
             height: 100%;
-            background: #1e1e2f;
-            color: white;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
-            overflow-y: auto;
-        }
-
-            #sidebar h2 {
-                border-bottom: 1px solid #444;
-                padding-bottom: 10px;
-                margin-bottom: 15px;
-            }
-
-            #sidebar button {
-                display: block;
-                width: 100%;
-                background: #2e2e44;
-                border: none;
-                color: white;
-                padding: 10px;
-                margin: 6px 0;
-                text-align: left;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 16px;
-                transition: background 0.3s;
-            }
-
-                #sidebar button:hover {
-                    background: #3d3d5c;
-                }
-
-        /* Imagen en popup */
-        .popup-img {
-            width: 200px;
-            border-radius: 8px;
-            margin-top: 5px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <main role="main">
         @RenderBody()
-    </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -80,4 +40,6 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+
 
